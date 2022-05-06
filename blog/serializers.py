@@ -7,14 +7,14 @@ from blog.models import Category, Post, Comment
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ('title',)
+        fields = ('id', 'title',)
 
 
 class ReplyCommentSerializer(serializers.ModelSerializer):
     user = UserLightSerializer()
     class Meta:
         model = Comment
-        fields = ('user', 'title', 'caption')
+        fields = ('id', 'user', 'title', 'caption')
 
 
 class CommentListSerializer(serializers.ModelSerializer):
@@ -30,7 +30,7 @@ class CommentDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ('user', 'title', 'caption', 'replies')
+        fields = ('id', 'user', 'title', 'caption', 'replies')
         extra_kwargs = {
             'user': {'read_only': True}
         }
