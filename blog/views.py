@@ -24,7 +24,7 @@ class PostListView(ListAPIView):
     queryset = Post.objects.published()
     serializer_class = PostListSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['author', 'category__title']
+    filterset_fields = ['author', 'categories__title']
     search_fields = ['title', 'description', 'categories__title', '=author__username']
 
 
@@ -37,7 +37,7 @@ class UserPostViewSet(ModelViewSet):
     permission_classes = (IsAuthenticated, PostOwnerPermission)
     pagination_class = StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['status', 'category__title']
+    filterset_fields = ['status', 'categories__title']
     search_fields = ['title', 'description', 'categories__title']
     write_serializer_class = PostWriteSerializer
     read_serializer_class = PostDetailSerializer
